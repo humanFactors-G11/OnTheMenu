@@ -32,4 +32,11 @@ public class RestaurantCreate extends AppCompatActivity {
         });
     }
 
+    public void logOut(View v){
+        //Add Logout function here
+
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+    }
+
 }

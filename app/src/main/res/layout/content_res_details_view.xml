@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    <LinearLayout
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <TextView
+            android:id="@+id/resNameView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Restaurant Name"
+            android:textSize="22sp"
+            android:textColor="#000000"/>
+        <TextView
+            android:id="@+id/resTypeView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Restaurant Type: Mexican"
+            android:paddingTop="20dp"/>
+        <TextView
+            android:id="@+id/resAddressView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Restaurant Address"
+            android:paddingTop="20dp"
+            android:textSize="18sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="20dp">
+
+            <TextView
+                android:id="@+id/resCityView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="City"
+                android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/resStateView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="State"
+                android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/resZipView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Zip"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/sundayView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sunday:"/>
+            <TextView
+                android:id="@+id/mondayView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monday:"
+                android:layout_marginTop="30dp"/>
+            <TextView
+                android:id="@+id/tuesdayView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tuesday:"
+                android:layout_marginTop="60dp"/>
+            <TextView
+                android:id="@+id/wednesdayView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wednesday:"
+                android:layout_marginTop="90dp"/>
+            <TextView
+                android:id="@+id/ThursdayView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thursday:"
+                android:layout_marginTop="120dp"/>
+            <TextView
+                android:id="@+id/fridayView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Friday:"
+                android:layout_marginTop="150dp"/>
+            <TextView
+                android:id="@+id/saturdayView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saturday:"
+                android:layout_marginTop="180dp"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/resDescriptionView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="150dp"
+            android:background="@drawable/squarebox"
+            android:padding="5dp"
+            android:text="Restaurant Description"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+</ScrollView>

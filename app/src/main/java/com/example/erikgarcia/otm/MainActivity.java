@@ -2,17 +2,15 @@ package com.example.erikgarcia.otm;
 
 import android.content.Intent;
 import android.graphics.Paint;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -82,12 +80,15 @@ public class MainActivity extends AppCompatActivity {
 
     //Search Button reads in the zip and restaurant type
     //TODO create the restaurant search display activity and
-    public void readInput(View v) {
+    public void search(View v) {
         String zip = zipCode.getText().toString();
         String type = resType.getSelectedItem().toString();
 
         //Testing that i got the right result by logging
         Log.d("TEST", zip + " " + type);
+
+        Intent i = new Intent(this, Search.class);
+        startActivity(i);
     }
 
 

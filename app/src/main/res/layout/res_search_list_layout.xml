@@ -8,25 +8,68 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
         android:gravity="center_vertical">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:id="@+id/resNameSearchView"
-            android:text="Test"
-            android:textSize="18sp"/>
-        <RatingBar
+            android:background="@drawable/squarebox"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/resNameSearchView"
+                android:text="Restaurant Name"
+                android:textSize="18sp"
+                android:padding="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Restaurant Type"
+                android:padding="5dp"/>
+
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1.5"
-            android:numStars="5"
-            android:rating="3"
-            android:isIndicator="false"
-            android:stepSize="0.5"/>
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/squarebox"
+            android:padding="5dp">
+
+            <RatingBar
+                android:id="@+id/ratingDisplay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:isIndicator="true"
+                android:stepSize="1"
+                android:rating="3"
+                style="?android:attr/ratingBarStyleSmall"/>
+
+            <TextView
+                android:id="@+id/ratingDisplayTextview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3.0"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
 
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/advancedSearchItemContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"/>
 
 </LinearLayout>
