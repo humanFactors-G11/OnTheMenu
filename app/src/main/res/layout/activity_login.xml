@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.erikgarcia.otm.Login">
+    tools:context="com.example.erikgarcia.otm.SignupLogin.Login">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
@@ -32,21 +32,23 @@
             android:paddingTop="60dp"/>
 
         <EditText
+            android:imeOptions="actionNext"
             android:id="@+id/username_input"
             android:hint="Username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="60dp"
-            android:lines="1"
+            android:singleLine="true"
             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
         <EditText
+            android:imeOptions="actionDone"
             android:id="@+id/password_input"
             android:hint="Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:paddingTop="32dp"
-            android:lines="1"/>
+            android:singleLine="true"/>
 
         <Button
             android:id="@+id/next_button"

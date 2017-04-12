@@ -1,10 +1,12 @@
-package com.example.erikgarcia.otm;
+package com.example.erikgarcia.otm.ViewRestaurant;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.erikgarcia.otm.R;
 
 /**
  * Created by Maverick on 3/31/2017.

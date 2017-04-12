@@ -24,6 +24,7 @@
         android:textColor="@color/colorPrimaryDark"/>
 
     <EditText
+        android:imeOptions="actionDone"
         android:id="@+id/zip_code"
         android:layout_width="160dp"
         android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-package com.example.erikgarcia.otm;
+package com.example.erikgarcia.otm.ViewRestaurant;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.erikgarcia.otm.R;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 /**

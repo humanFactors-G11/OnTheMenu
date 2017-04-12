@@ -1,4 +1,4 @@
-package com.example.erikgarcia.otm;
+package com.example.erikgarcia.otm.ViewRestaurant;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.example.erikgarcia.otm.R;
 
 /**
  * Created by Maverick on 3/31/2017.

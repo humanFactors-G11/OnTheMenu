@@ -16,12 +16,15 @@
         android:text="Keyword search: "
         android:textSize="18sp" />
     <EditText
+        android:singleLine="true"
+        android:imeOptions="actionDone"
+        android:id="@+id/keywordSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Burger, Pizza, Pasta..."
         android:textSize="18sp"
         android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        android:inputType="textAutoCorrect|textAutoComplete"/>
+        android:inputType="textAutoCorrect|textAutoComplete|textCapWords"/>
 
     </LinearLayout>
 
