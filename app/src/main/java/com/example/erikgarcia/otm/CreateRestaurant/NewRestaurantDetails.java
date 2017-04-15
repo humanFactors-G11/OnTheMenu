@@ -1,5 +1,7 @@
-package com.example.erikgarcia.otm;
+package com.example.erikgarcia.otm.CreateRestaurant;
 
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -8,10 +10,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
+import com.example.erikgarcia.otm.R;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -24,7 +29,18 @@ public class NewRestaurantDetails extends AppCompatActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient mClient;
+    ResTempSaveService tempSave = new ResTempSaveService();
+    FragmentResDetails fSave = new FragmentResDetails();
+
     Button menuSwitch;
+
+    TextView sunOpen;
+    TextView monOpen;
+    TextView tuesOpen;
+    TextView wedOpen;
+    TextView thuOpen;
+    TextView friOpen;
+    TextView satOpen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +52,34 @@ public class NewRestaurantDetails extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         toolbar.setTitleTextColor(getResources().getColor(R.color.textColor));
 
+        Intent saveService = new Intent(this, ResTempSaveService.class);
+        startService(saveService);
+
+        Bundle extras = getIntent().getExtras();
+        String getEditResDetails = "";
+        if(extras != null) {
+            getEditResDetails = extras.getString("Edit");
+            tempSave.tempSave().editRes = getEditResDetails;
+        }
+
         menuSwitch = (Button) findViewById(R.id.switchToMenu);
 
-        loadFragment(new FragmentResDetials());
+        loadFragment(new FragmentResDetails());
         menuSwitch.setText("Switch to Menu View");
 
         menuSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                menuSwitch.setFocusable(true);
+                menuSwitch.requestFocusFromTouch();
+
+                //Hide Keyboard when switching Tabs
+                InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+
+                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),
+                        InputMethodManager.RESULT_UNCHANGED_SHOWN);
 
                 switch (menuSwitch.getText().toString()){
                     case"Switch to Menu View" :
@@ -51,7 +87,7 @@ public class NewRestaurantDetails extends AppCompatActivity {
                         menuSwitch.setText("Switch to Details View");
                         break;
                     case "Switch to Details View":
-                        loadFragment(new FragmentResDetials());
+                        loadFragment(new FragmentResDetails());
                         menuSwitch.setText("Switch to Menu View");
                 }
 
@@ -70,12 +106,9 @@ public class NewRestaurantDetails extends AppCompatActivity {
         ft.commit();
     }
 
-    private void switchPosition(){
-
-    }
-
     public void time(final View v) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(NewRestaurantDetails.this);
         View timePickerLayout = getLayoutInflater().inflate(R.layout.time_picker, null);
         builder.setView(timePickerLayout);
 
@@ -84,6 +117,21 @@ public class NewRestaurantDetails extends AppCompatActivity {
 
         final TimePicker time = (TimePicker) alert.findViewById(R.id.timePicker);
         final TextView textView = (TextView) v;
+
+        if(textView.getId() == R.id.sunOpen
+                || textView.getId() == R.id.monOpen
+                || textView.getId() == R.id.tuesOpen
+                || textView.getId() == R.id.wedOpen
+                || textView.getId() == R.id.thuOpen
+                || textView.getId() == R.id.friOpen
+                || textView.getId() == R.id.satOpen) {
+
+            time.setCurrentHour(0);
+        } else {
+            time.setCurrentHour(12);
+        }
+
+        time.setCurrentMinute(0);
 
         Button save = (Button) alert.findViewById(R.id.timePickerSave);
         save.setOnClickListener(new View.OnClickListener() {
@@ -100,24 +148,55 @@ public class NewRestaurantDetails extends AppCompatActivity {
                 switch (textView.getId()) {
                     case R.id.sunOpen:
                         textView.append("  -");
+                        tempSave.tempSave().resTime[0] = textView.getText().toString();
+                        Toast.makeText(getApplicationContext(), tempSave.tempSave().resTime[0], Toast.LENGTH_LONG).show();
                         break;
                     case R.id.monOpen:
                         textView.append("  -");
+                        tempSave.tempSave().resTime[1] = textView.getText().toString();
                         break;
                     case R.id.tuesOpen:
                         textView.append("  -");
+                        tempSave.tempSave().resTime[2] = textView.getText().toString();
                         break;
                     case R.id.wedOpen:
                         textView.append("  -");
+                        tempSave.tempSave().resTime[3] = textView.getText().toString();
                         break;
                     case R.id.thuOpen:
                         textView.append("  -");
+                        tempSave.tempSave().resTime[4] = textView.getText().toString();
                         break;
                     case R.id.friOpen:
                         textView.append("  -");
+                        tempSave.tempSave().resTime[5] = textView.getText().toString();
                         break;
                     case R.id.satOpen:
                         textView.append("  -");
+                        tempSave.tempSave().resTime[6] = textView.getText().toString();
+                        break;
+
+                    //===== Saving to Close =====
+                    case R.id.sunClose:
+                        tempSave.tempSave().resTime[7] = textView.getText().toString();
+                        break;
+                    case R.id.monClose:
+                        tempSave.tempSave().resTime[8] = textView.getText().toString();
+                        break;
+                    case R.id.tuesClose:
+                        tempSave.tempSave().resTime[9] = textView.getText().toString();
+                        break;
+                    case R.id.wedClose:
+                        tempSave.tempSave().resTime[10] = textView.getText().toString();
+                        break;
+                    case R.id.thuClose:
+                        tempSave.tempSave().resTime[11] = textView.getText().toString();
+                        break;
+                    case R.id.friClose:
+                        tempSave.tempSave().resTime[12] = textView.getText().toString();
+                        break;
+                    case R.id.satClose:
+                        tempSave.tempSave().resTime[13] = textView.getText().toString();
                 }
 
                 String setTime = h + ":" + m;
@@ -138,19 +217,48 @@ public class NewRestaurantDetails extends AppCompatActivity {
                 textView.setText("Closed");
                 switchText(v, textView);
                 alert.dismiss();
+
+                switch(v.getId()){
+                    case R.id.sunOpen:
+                        tempSave.tempSave().resTime[0] = "Closed";
+                        tempSave.tempSave().resTime[7] = "12:00 pm";
+                        break;
+                    case R.id.monOpen:
+                        tempSave.tempSave().resTime[1] = "Closed";
+                        tempSave.tempSave().resTime[8] = "12:00 pm";
+                        break;
+                    case R.id.tuesOpen:
+                        tempSave.tempSave().resTime[2] = "Closed";
+                        tempSave.tempSave().resTime[9] = "12:00 pm";
+                        break;
+                    case R.id.wedOpen:
+                        tempSave.tempSave().resTime[3] = "Closed";
+                        tempSave.tempSave().resTime[10] = "12:00 pm";
+                        break;
+                    case R.id.thuOpen:
+                        tempSave.tempSave().resTime[4] = "Closed";
+                        tempSave.tempSave().resTime[11] = "12:00 pm";
+                        break;
+                    case R.id.friOpen:
+                        tempSave.tempSave().resTime[5] = "Closed";
+                        tempSave.tempSave().resTime[12] = "12:00 pm";
+                        break;
+                    case R.id.satOpen:
+                        tempSave.tempSave().resTime[6] = "Closed";
+                        tempSave.tempSave().resTime[13] = "12:00 pm";
+                }
             }
         });
     }
 
-    private void switchText(View v, TextView t) {
-
-        final TextView sunOpen = (TextView) findViewById(R.id.sunOpen);
-        final TextView monOpen = (TextView) findViewById(R.id.monOpen);
-        final TextView tuesOpen = (TextView) findViewById(R.id.tuesOpen);
-        final TextView wedOpen = (TextView) findViewById(R.id.wedOpen);
-        final TextView thuOpen = (TextView) findViewById(R.id.thuOpen);
-        final TextView friOpen = (TextView) findViewById(R.id.friOpen);
-        final TextView satOpen = (TextView) findViewById(R.id.satOpen);
+    public void switchText(View v, TextView t) {
+        sunOpen = (TextView)v.findViewById(R.id.sunOpen);
+        monOpen = (TextView)v.findViewById(R.id.monOpen);
+        tuesOpen = (TextView)v.findViewById(R.id.tuesOpen);
+        wedOpen = (TextView)v.findViewById(R.id.wedOpen);
+        thuOpen = (TextView)v.findViewById(R.id.thuOpen);
+        friOpen = (TextView)v.findViewById(R.id.friOpen);
+        satOpen = (TextView)v.findViewById(R.id.satOpen);
 
         switch (v.getId()) {
             case R.id.sunOpen:
@@ -273,32 +381,41 @@ public class NewRestaurantDetails extends AppCompatActivity {
         }
     }
 
-    public void cancel(View v) {
-
-        //Clear the Autosaves Here
-
-        finish();
-
-    }
-
-    public void next(View v) {
-        //Save All Date
-
-        menuSwitch = (Button)this.findViewById(R.id.switchToMenu);
-
-        loadFragment(new FragmentResMenu());
-        menuSwitch.setText("Switch to Details View");
-
-
-    }
-
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
+        alert();
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void alert(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(NewRestaurantDetails.this);
+        View alertView = getLayoutInflater().inflate(R.layout.delete_res_popup, null);
+        builder.setView(alertView);
+        final AlertDialog alert = builder.create();
+        alert.show();
+
+        Button yesDelete = (Button)alert.findViewById(R.id.yesDelete);
+        Button noDelete = (Button)alert.findViewById(R.id.noDelete);
+        TextView textView = (TextView)alert.findViewById(R.id.deleteResTextView);
+        textView.setText("Are you sure you want to stop editing?\nAll changes will be deleted.");
+        yesDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(getApplicationContext(), RestaurantCreate.class);
+                startActivity(i);
+
+                tempSave.tempSave().clearCache = true;
+                alert.dismiss();
+            }
+        });
+        noDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alert.dismiss();
+            }
+        });
+
     }
 
     /**
@@ -336,4 +453,32 @@ public class NewRestaurantDetails extends AppCompatActivity {
         AppIndex.AppIndexApi.end(mClient, getIndexApiAction());
         mClient.disconnect();
     }
+
+    public void cancel(View v) {
+        alert();
+
+    }
+
+    public void next(View v) {
+
+        menuSwitch = (Button)findViewById(R.id.switchToMenu);
+
+        //Hide Keyboard when switching Tabs
+        InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(
+                Context.INPUT_METHOD_SERVICE);
+
+        inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(),
+                InputMethodManager.RESULT_UNCHANGED_SHOWN);
+
+        loadFragment(new FragmentResMenu());
+        menuSwitch.setText("Switch to Details View");
+
+
+    }
+
+    @Override
+    public void onBackPressed(){
+        alert();
+    }
+
 }

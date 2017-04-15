@@ -20,6 +20,8 @@
             android:id="@+id/foodGroupMinusButton"/>
 
         <EditText
+            android:singleLine="true"
+            android:imeOptions="actionDone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Food Group Name"
@@ -43,7 +45,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/newItemOnClick"
         android:paddingBottom="20dp"
         android:gravity="center_vertical">
 
@@ -56,8 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="New Item"
-            android:textSize="18sp"
-            android:id="@+id/newItemTextView"/>
+            android:textSize="18sp"/>
 
     </LinearLayout>
 

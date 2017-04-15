@@ -2,7 +2,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-    android:padding="@dimen/activity_horizontal_margin">
+    android:padding="@dimen/activity_horizontal_margin"
+    android:id="@+id/newResDetailsScroll"
+    android:clickable="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +16,7 @@
             android:layout_height="wrap_content"
             android:hint="Restaurant Name"
             android:id="@+id/newResName"
-            android:lines="1"
+            android:singleLine="true"
             android:textSize="18sp"
             android:paddingTop="20dp"/>
 
@@ -22,7 +24,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="20dp">
+            android:paddingTop="20dp"
+            android:layout_gravity="center_vertical">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,7 +44,7 @@
             android:layout_height="wrap_content"
             android:hint="Restaurant Address"
             android:id="@+id/newResAddress"
-            android:lines="1"
+            android:singleLine="true"
             android:textSize="18sp"
             android:paddingTop="20dp"/>
 
@@ -55,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:hint="City"
                 android:id="@+id/newResCity"
-                android:lines="1"
+                android:singleLine="true"
                 android:textSize="18sp"
                 android:paddingTop="20dp"
                 android:inputType="textAutoCorrect|textAutoComplete"/>
@@ -65,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:hint="State"
                 android:id="@+id/newResState"
-                android:lines="1"
+                android:singleLine="true"
                 android:textSize="18sp"
                 android:paddingTop="20dp"/>
             <EditText
@@ -74,9 +77,10 @@
                 android:layout_height="wrap_content"
                 android:hint="Zip"
                 android:id="@+id/newResZip"
-                android:lines="1"
+                android:singleLine="true"
                 android:textSize="18sp"
                 android:paddingTop="20dp"
+                android:maxLength="5"
                 android:inputType="number"/>
         </LinearLayout>
 
@@ -260,7 +264,7 @@
             android:padding="5dp"
             android:minHeight="150dp"
             android:gravity="top|left"
-            android:maxLength="250"
+            android:maxLength="400"
             android:id="@+id/resDescription"
             android:background="@drawable/squarebox"
             android:hint="Example: Happy Hour..."/>

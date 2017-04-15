@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:id="@+id/newGroupOnClick"
+            android:id="@+id/newItemOnClick"
             android:gravity="center_vertical">
 
             <ImageView
@@ -41,10 +41,11 @@
                 android:layout_height="23dp"
                 android:background="@drawable/ic_plus_button"/>
             <TextView
+                android:id="@+id/newItemText"
                 android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="New Menu Food Group"
+                android:text="New Item"
                 android:textSize="18sp"/>
 
         </LinearLayout>

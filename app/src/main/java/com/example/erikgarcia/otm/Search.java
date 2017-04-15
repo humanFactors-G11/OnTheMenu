@@ -1,24 +1,33 @@
 package com.example.erikgarcia.otm;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
-public class SignupActivity extends AppCompatActivity {
+import com.example.erikgarcia.otm.ViewRestaurant.ViewResDetails;
+
+public class Search extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_search);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         toolbar.setTitleTextColor(getResources().getColor(R.color.textColor));
+
+
     }
 
-    //TODO check that the password, username, and email are valid (i.e at least 8 char or whatev)
+    public void resListOnClick(View v){
+        Intent i = new Intent(this, ViewResDetails.class);
+        startActivity(i);
+    }
 
     public boolean onOptionsItemSelected(MenuItem item){
         if(item.getItemId() == android.R.id.home){
@@ -28,5 +37,4 @@ public class SignupActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }
